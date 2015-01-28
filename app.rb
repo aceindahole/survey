@@ -26,5 +26,23 @@ post("/questions") do
   question = Question.create({:description => description, :survey_id => survey_id})
   @survey = Survey.find(survey_id)
   erb(:survey)
+end
 
+get("/surveys/:id/edit") do
+  @survey = Survey.find(paramsfetch("id").to_i())
+  erb(:survey_edit)
+end
+
+patch("/surveys/:id") do
+  name = params.fetch("name")
+  @survey = Survey.find(params.fetch("id").to_i())
+  @survey.update({:name => name})
+  erb(:index)
+end
+
+delete("/surveys/:id") do
+  @survey = Survey.find(params.fetch("id").to_i())
+  @survey.delete
+  @surveys = Survey.all()
+  erb(:index)
 end
