@@ -2,7 +2,7 @@
 
 <p>Add a survey:</p>
 
-<form action="/index" method="post">
+<form action="/surveys" method="post">
   <label for="name">Survey Name</label>
   <input id="name" name="name" type="text">
 
@@ -13,6 +13,6 @@
 
 <ul>
   <% @surveys.each do |survey| %>
-  <li><a href="/survey/<%= survey.id() %>"><%= survey.name() %></a></li>
+  <li><a href="/surveys/<%= survey.id() %>"><%= survey.name() %></a></li>
   <% end %>
 </ul>

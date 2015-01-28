@@ -1,0 +1,24 @@
+<h1> Add a Question to <%@survey.name() %> </h1>
+
+  <form action="/questions" method="post">
+    <input id="survey_id" name="survey_id" type="hidden" value="<%= @survey.id() %>">
+
+    <label for="description">What's your question?</label>
+    <input id="description" name="description" type="text">
+
+
+    <button type="submit">Add question</button>
+  </form>
+
+  <% if @survey.questions().any?() %>
+    <h3>Here are all of the questions in this survey:</h3>
+    <ul>
+      <% @survey.questions().each() do |question| %>
+      <li><%= question.description() %> </li>
+      <% end %>
+  </ul>
+  <% else %>
+    <p> There are no questions yet!</p>
+    <% end %>
+
+  <a href="/">Return to Main Page</a>
