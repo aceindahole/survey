@@ -1,4 +1,4 @@
-<h1> Add a Question to <%@survey.name() %> </h1>
+<h1> Add a Question to <%= @survey.name() %> </h1>
 
   <form action="/questions" method="post">
     <input id="survey_id" name="survey_id" type="hidden" value="<%= @survey.id() %>">
@@ -14,11 +14,13 @@
     <h3>Here are all of the questions in this survey:</h3>
     <ul>
       <% @survey.questions().each() do |question| %>
-      <li><%= question.description() %> </li>
+      <li><%= question.description() %><a href="/questions/<%= question.id() %>/edit">Edit question</a> </li>
       <% end %>
   </ul>
   <% else %>
     <p> There are no questions yet!</p>
     <% end %>
 
-  <a href="/">Return to Main Page</a>
+  <p><a href="/surveys/<%= @survey.id() %>/edit">Edit <%= @survey.name() %> survey</a></p>
+
+  <p><a href="/">Return to Main Page</a></p>
